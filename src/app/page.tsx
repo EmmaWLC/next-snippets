@@ -10,9 +10,19 @@ export default async function Home() {
         href={`/snippets/${snippet.id}`}
         className="flex justify-between items-center p-2 border rounded"
       >
-        {snippet.title}
+        <div>{snippet.title}</div>
+        <div>View</div>
       </Link>
     );
   });
-  return <div>{renderSnippets}</div>;
+  return <div>
+    <div className='flex m-2 justify-between items-center'>
+      <h1 className='text-xl font-bold'>Snippets</h1>
+      <Link href='/snippets/new' className='border p-2 rounded'>New</Link>
+    </div>
+    <div className='flex flex-col gap-2'>
+      {renderSnippets}
+    </div>
+    
+    </div>;
 }
