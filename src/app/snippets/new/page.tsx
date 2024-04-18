@@ -15,14 +15,14 @@ export default function SnippetCreatePage() {
     const snippet = await db.snippet.create({
       data: {
         title,
-        code
-      }
-    })
+        code,
+      },
+    });
 
     // Redirect the user back to the root route
     redirect('/');
   }
-  
+
   return (
     <form action={createSnippet}>
       <h3 className="font-bold m-3">Create a Snippet</h3>
