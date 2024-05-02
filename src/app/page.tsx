@@ -15,14 +15,24 @@ export default async function Home() {
       </Link>
     );
   });
-  return <div>
-    <div className='flex m-2 justify-between items-center'>
-      <h1 className='text-xl font-bold'>Snippets</h1>
-      <Link href='/snippets/new' className='border p-2 rounded'>New</Link>
+  return (
+    <div>
+      <div className="flex m-2 justify-between items-center">
+        <h1 className="text-xl font-bold">Snippets</h1>
+        <Link href="/snippets/new" className="border p-2 rounded">
+          New
+        </Link>
+      </div>
+      <div className="flex flex-col gap-2">{renderSnippets}</div>
     </div>
-    <div className='flex flex-col gap-2'>
-      {renderSnippets}
-    </div>
-    
-    </div>;
+  );
+}
+
+export async function generateStaticParams() {
+  const snippets = await db.snippet.findMany();
+  return snippets.map((snippet) => {
+    return {
+      id: snippet.id.toString(),
+    };
+  });
 }
